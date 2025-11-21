@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- SEO оптимизация -->
+    {% include 'includes/seo.html' %}
+
+    <title>{% block title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}</title>
+
+    <!-- CSS файлы -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/backgrounds.css' %}">
+    <link rel="stylesheet" href="{% static 'css/equipment.css' %}">
+
+    <!-- Tailwind CSS для утилитарных классов -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+</head>
+<body class="body-bg text-light font-sans">
+    <!-- Header -->
+    <header class="header">
+        <nav class="container nav-container">
+            <div class="text-2xl font-bold text-accent">
+                ЦВСИ - Сибирский центр выявления скрываемой информации
+            </div>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-light-secondary hover:text-accent transition">О нас</a>
+                <a href="#services" class="text-light-secondary hover:text-accent transition">Услуги</a>
+                <a href="#reviews" class="text-light-secondary hover:text-accent transition">Отзывы</a>
+                <a href="#contacts" class="text-light-secondary hover:text-accent transition">Контакты</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                {% if settings %}
+                <a href="tel:{{ settings.phone }}" class="btn btn-primary">
+                    <i class="fas fa-phone mr-2"></i>Позвонить
+                </a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-accent mb-4">ЦВСИ</h3>
+                    <p class="text-light-secondary">Сибирский центр выявления скрываемой информации</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-light mb-4">Контакты</h4>
+                    {% if settings %}
+                    <p class="text-light-secondary"><i class="fas fa-phone mr-2"></i>{{ settings.phone }}</p>
+                    <p class="text-light-secondary"><i class="fas fa-envelope mr-2"></i>{{ settings.email }}</p>
+                    {% if settings.address %}
+                    <p class="text-light-secondary"><i class="fas fa-map-marker-alt mr-2"></i>{{ settings.address }}</p>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <div>
+                    <h4 class="font-bold text-light mb-4">Мы в соцсетях</h4>
+                    <div class="flex space-x-4">
+                        {% if settings and settings.vk_link %}
+                        <a href="{{ settings.vk_link }}" class="text-light-secondary hover:text-accent"><i class="fab fa-vk text-2xl"></i></a>
+                        {% endif %}
+                        {% if settings and settings.telegram_link %}
+                        <a href="{{ settings.telegram_link }}" class="text-light-secondary hover:text-accent"><i class="fab fa-telegram text-2xl"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS файлы -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/components/counters.js' %}"></script>
+    <script src="{% static 'js/components/forms.js' %}"></script>
+    <script src="{% static 'js/components/equipment.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

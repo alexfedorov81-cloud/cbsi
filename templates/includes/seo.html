@@ -1,0 +1,83 @@
+{% load static %}
+<!-- Основные мета-теги -->
+<meta name="description" content="{% block meta_description %}Профессиональные полиграфологические исследования в Сибирском регионе. Современное оборудование, конфиденциальность, официальные заключения.{% endblock %}">
+<meta name="keywords" content="{% block meta_keywords %}полиграф, детектор лжи, проверка на полиграфе, полиграфолог, Сибирский центр, ЦВСИ{% endblock %}">
+<meta name="author" content="ЦВСИ - Сибирский центр выявления скрываемой информации">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{% block og_title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Профессиональные полиграфологические исследования. Современное оборудование, конфиденциальность, официальные заключения.{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% block og_image %}{% static 'images/og-image.jpg' %}{% endblock %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ЦВСИ - Сибирский центр выявления скрываемой информации">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block twitter_title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Профессиональные полиграфологические исследования. Современное оборудование, конфиденциальность.{% endblock %}">
+<meta name="twitter:image" content="{% block twitter_image %}{% static 'images/og-image.jpg' %}{% endblock %}">
+
+<!-- Дополнительные SEO теги -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "ЦВСИ - Сибирский центр выявления скрываемой информации",
+  "description": "Профессиональные полиграфологические исследования в Сибирском регионе",
+  "url": "{{ request.build_absolute_uri|default:'http://localhost:8000' }}",
+  "telephone": "{% if settings %}{{ settings.phone }}{% else %}+7 (999) 123-45-67{% endif %}",
+  "email": "{% if settings %}{{ settings.email }}{% else %}info@cbsi.ru{% endif %}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{% if settings %}{{ settings.address }}{% else %}г. Новосибирск{% endif %}"
+  },
+  "areaServed": "Сибирский федеральный округ",
+  "serviceType": "Полиграфологические исследования",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "priceRange": "$$"
+}
+</script>
+
+<!-- LocalBusiness микроразметка -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "ЦВСИ - Сибирский центр выявления скрываемой информации",
+  "image": "{% static 'images/og-image.jpg' %}",
+  "description": "Профессиональные полиграфологические исследования в Сибирском регионе",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{% if settings %}{{ settings.address }}{% else %}г. Новосибирск{% endif %}",
+    "addressRegion": "Сибирский федеральный округ",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "55.0084",
+    "longitude": "82.9357"
+  },
+  "url": "{{ request.build_absolute_uri|default:'http://localhost:8000' }}",
+  "telephone": "{% if settings %}{{ settings.phone }}{% else %}+7 (999) 123-45-67{% endif %}",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "priceRange": "от 5000 руб.",
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "55.0084",
+      "longitude": "82.9357"
+    },
+    "geoRadius": "500000"
+  }
+}
+</script>

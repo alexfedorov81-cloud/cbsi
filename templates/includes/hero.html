@@ -1,0 +1,36 @@
+<!-- Герой секция -->
+<div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in">
+        Профессиональный <span class="text-yellow-300">полиграф</span>
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in">
+        Современные методы детекции лжи. Достоверные результаты.
+        Конфиденциально и профессионально.
+    </p>
+    <div class="flex flex-col md:flex-row gap-4 justify-center fade-in">
+        <button onclick="scrollToSection('services')"
+                class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105">
+            Наши услуги
+        </button>
+        <button onclick="scrollToSection('contacts')"
+                class="border-2 border-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition duration-300">
+            Бесплатная консультация
+        </button>
+    </div>
+
+    <!-- Анимированные цифры статистики -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto">
+        <div class="text-center fade-in">
+            <div class="text-4xl font-bold mb-2" id="counter1" data-value="{% if statistics %}{{ statistics.tests_completed }}{% else %}1250{% endif %}">0</div>
+            <div class="text-lg">Проведенных проверок</div>
+        </div>
+        <div class="text-center fade-in">
+            <div class="text-4xl font-bold mb-2" id="counter2" data-value="{% if statistics %}{{ statistics.corporate_clients }}{% else %}89{% endif %}">0</div>
+            <div class="text-lg">Корпоративных клиентов</div>
+        </div>
+        <div class="text-center fade-in">
+            <div class="text-4xl font-bold mb-2" id="counter3" data-value="{% if statistics %}{{ statistics.years_experience }}{% else %}12{% endif %}">0</div>
+            <div class="text-lg">Лет на рынке</div>
+        </div>
+    </div>
+</div>
