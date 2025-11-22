@@ -28,11 +28,11 @@ def callback_request(request):
                 try:
                     from services.models import Service
                     service = Service.objects.get(id=service_id)
-                    print(f"📋 Услуга найдена: {service.name}")
+                    print(f"📋 Услуга найдена: {service.title}")
                     callback = form.save(commit=False)
                     callback.service = service
                     callback.save()
-                    service_name = service.name
+                    service_name = service.title
                 except Exception as e:
                     print(f"⚠️ Ошибка при обработке услуги: {e}")
                     callback = form.save()
