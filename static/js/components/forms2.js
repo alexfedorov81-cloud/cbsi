@@ -1,34 +1,36 @@
+// Forms2: Simple scroll functions
+function scrollToSection(sectionId) {
+    console.log('🎯 Scrolling to:', sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 function focusOnCallbackForm(serviceId = null) {
     console.log('🎯 Focusing on form, serviceId:', serviceId);
-
-    if (serviceId) {
-        let serviceField = document.getElementById('service-field');
-        if (!serviceField) {
-            serviceField = document.createElement('input');
-            serviceField.type = 'hidden';
-            serviceField.name = 'service_id';
-            serviceField.id = 'service-field';
-            const form = document.getElementById('callback-form');
-            if (form) {
-                form.appendChild(serviceField);
-            }
-        }
-        serviceField.value = serviceId;
-    }
-
-    // Simple scroll to contacts
+    
+    // Scroll to contacts form
     const contactsSection = document.getElementById('contacts');
     if (contactsSection) {
         contactsSection.scrollIntoView({ behavior: 'smooth' });
     }
-
-    // Focus on name field after scroll
-    setTimeout(() => {
-        const nameField = document.getElementById('name-field');
-        if (nameField) {
-            nameField.focus();
-        }
-    }, 500);
+    
+    // Add service_id if needed
+    if (serviceId) {
+        setTimeout(() => {
+            let serviceField = document.getElementById('service-field');
+            if (!serviceField) {
+                serviceField = document.createElement('input');
+                serviceField.type = 'hidden';
+                serviceField.name = 'service_id';
+                serviceField.id = 'service-field';
+                const form = document.getElementById('callback-form');
+                if (form) form.appendChild(serviceField);
+            }
+            serviceField.value = serviceId;
+        }, 500);
+    }
 }
 
-console.log('✅ Forms: Standard HTML form submission enabled');// Forms2: Standard form submission
+console.log('✅ Forms2: Scroll functions loaded');
