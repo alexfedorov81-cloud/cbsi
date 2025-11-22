@@ -43,12 +43,13 @@ const Forms = {
 
             console.log('📦 Данные формы:', data);
 
-            // Используем JSON вместо FormData для совместимости с вашей вьюхой
-            const response = await fetch(form.action || '/callback/', {
+            // Используем JSON вместо FormData
+            const response = await fetch('/contacts/callback/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': data.csrfmiddlewaretoken  // ← ДОБАВИЛИ CSRF TOKEN
                 },
                 body: JSON.stringify(data)
             });
@@ -69,7 +70,6 @@ const Forms = {
                 }
                 form.reset();
 
-                // Показываем дополнительное уведомление
                 console.log('✅ Форма успешно отправлена, Telegram уведомление должно быть отправлено');
 
                 setTimeout(() => {
