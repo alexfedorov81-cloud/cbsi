@@ -322,33 +322,36 @@
 
                         <div id="form-messages" class="mb-4" aria-live="polite"></div>
 
-                        <form id="callback-form" class="space-y-4" action="{% url 'callback' %}" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
-                            {% csrf_token %}
-                            <div>
-                                <label for="name-field" class="sr-only">Ваше имя</label>
-                                <input type="text" name="name" required
-                                       class="w-full px-4 py-3 rounded-lg placeholder-gray-400"
-                                       placeholder="Ваше имя"
-                                       id="name-field"
-                                       aria-required="true"
-                                       style="background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(100, 116, 139, 0.5); color: #f1f5f9; caret-color: #63b3ed;">
-                            </div>
-                            <div>
-                                <label for="phone-field" class="sr-only">Ваш телефон</label>
-                                <input type="tel" name="phone" required
-                                       class="w-full px-4 py-3 rounded-lg placeholder-gray-400"
-                                       placeholder="Ваш телефон"
-                                       id="phone-field"
-                                       aria-required="true"
-                                       style="background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(100, 116, 139, 0.5); color: #f1f5f9; caret-color: #63b3ed;">
-                            </div>
-                            <button type="submit"
-                                    class="w-full btn btn-primary py-3"
-                                    id="submit-btn"
-                                    aria-label="Отправить заявку на обратный звонок">
-                                Заказать звонок
-                            </button>
-                        </form>
+                       <form id="callback-form" class="space-y-4" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
+                            <form id="callback-form" class="space-y-4" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="name-field" class="sr-only">Ваше имя</label>
+                                    <input type="text" name="name" required
+                                           class="w-full px-4 py-3 rounded-lg placeholder-gray-400"
+                                           placeholder="Ваше имя"
+                                           id="name-field"
+                                           aria-required="true"
+                                           style="background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(100, 116, 139, 0.5); color: #f1f5f9; caret-color: #63b3ed;">
+                                </div>
+                                <div>
+                                    <label for="phone-field" class="sr-only">Ваш телефон</label>
+                                    <input type="tel" name="phone" required
+                                           class="w-full px-4 py-3 rounded-lg placeholder-gray-400"
+                                           placeholder="Ваш телефон"
+                                           id="phone-field"
+                                           aria-required="true"
+                                           style="background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(100, 116, 139, 0.5); color: #f1f5f9; caret-color: #63b3ed;">
+                                </div>
+                                <button type="submit"
+                                        class="w-full btn btn-primary py-3"
+                                        id="submit-btn"
+                                        aria-label="Отправить заявку на обратный звонок">
+                                    Заказать звонок
+                                </button>
+                            </form>
+                            <!-- Контейнер для сообщений об успехе/ошибке -->
+                            <div id="form-messages" class="mt-4"></div>
                     </div>
                 </div>
             </div>

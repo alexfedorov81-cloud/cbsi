@@ -7,57 +7,95 @@ const Forms = {
     initCallbackForm: () => {
         const form = document.getElementById('callback-form');
         if (form) {
+            console.log('✅ Форма обратного звонка инициализирована');
             form.addEventListener('submit', Forms.handleCallbackSubmit);
+        } else {
+            console.log('❌ Форма callback-form не найдена');
         }
     },
 
     handleCallbackSubmit: async (e) => {
         e.preventDefault();
         const form = e.target;
-        const submitBtn = document.getElementById('submit-btn');
+        const submitBtn = form.querySelector('button[type="submit"]') || document.getElementById('submit-btn');
         const originalText = submitBtn.textContent;
         const messagesContainer = document.getElementById('form-messages');
+
+        console.log('🎯 Начата отправка формы обратного звонка');
 
         // Показываем загрузку
         submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
-        messagesContainer.innerHTML = '';
+        if (messagesContainer) {
+            messagesContainer.innerHTML = '';
+        }
 
         try {
             const formData = new FormData(form);
-            const response = await fetch(form.action || '{% url "callback" %}', {
+
+            // Преобразуем FormData в обычный объект для JSON
+            const data = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                service_id: formData.get('service_id'),
+                csrfmiddlewaretoken: formData.get('csrfmiddlewaretoken')
+            };
+
+            console.log('📦 Данные формы:', data);
+
+            // Используем JSON вместо FormData для совместимости с вашей вьюхой
+            const response = await fetch(form.action || '/callback/', {
                 method: 'POST',
-                body: formData,
                 headers: {
+                    'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
-                }
+                },
+                body: JSON.stringify(data)
             });
 
-            const data = await response.json();
+            console.log('📡 Ответ получен, статус:', response.status);
 
-            if (data.success) {
-                messagesContainer.innerHTML = `
-                    <div class="bg-green-600 text-white p-4 rounded-lg mb-4 border border-green-500">
-                        ✅ ${data.message}
-                    </div>
-                `;
+            const responseData = await response.json();
+
+            console.log('📨 Данные ответа:', responseData);
+
+            if (responseData.success) {
+                if (messagesContainer) {
+                    messagesContainer.innerHTML = `
+                        <div class="bg-green-600 text-white p-4 rounded-lg mb-4 border border-green-500">
+                            ✅ ${responseData.message}
+                        </div>
+                    `;
+                }
                 form.reset();
-                setTimeout(() => messagesContainer.innerHTML = '', 5000);
+
+                // Показываем дополнительное уведомление
+                console.log('✅ Форма успешно отправлена, Telegram уведомление должно быть отправлено');
+
+                setTimeout(() => {
+                    if (messagesContainer) {
+                        messagesContainer.innerHTML = '';
+                    }
+                }, 5000);
             } else {
-                messagesContainer.innerHTML = `
-                    <div class="bg-red-600 text-white p-4 rounded-lg mb-4 border border-red-500">
-                        ❌ ${data.message}
-                    </div>
-                `;
+                if (messagesContainer) {
+                    messagesContainer.innerHTML = `
+                        <div class="bg-red-600 text-white p-4 rounded-lg mb-4 border border-red-500">
+                            ❌ ${responseData.message}
+                        </div>
+                    `;
+                }
             }
 
         } catch (error) {
-            console.error('Error:', error);
-            messagesContainer.innerHTML = `
-                <div class="bg-red-600 text-white p-4 rounded-lg mb-4 border border-red-500">
-                    ❌ Ошибка сети. Попробуйте еще раз.
-                </div>
-            `;
+            console.error('❌ Ошибка при отправке формы:', error);
+            if (messagesContainer) {
+                messagesContainer.innerHTML = `
+                    <div class="bg-red-600 text-white p-4 rounded-lg mb-4 border border-red-500">
+                        ❌ Ошибка сети. Попробуйте еще раз.
+                    </div>
+                `;
+            }
         } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
@@ -65,6 +103,8 @@ const Forms = {
     },
 
     focusOnCallbackForm: (serviceId = null) => {
+        console.log('🎯 Фокусировка на форме, serviceId:', serviceId);
+
         if (serviceId) {
             let serviceField = document.getElementById('service-field');
             if (!serviceField) {
@@ -72,12 +112,23 @@ const Forms = {
                 serviceField.type = 'hidden';
                 serviceField.name = 'service_id';
                 serviceField.id = 'service-field';
-                document.getElementById('callback-form').appendChild(serviceField);
+                const form = document.getElementById('callback-form');
+                if (form) {
+                    form.appendChild(serviceField);
+                }
             }
             serviceField.value = serviceId;
         }
 
-        Utils.scrollToElement('contacts');
+        // Используем Utils если он есть, иначе простой скролл
+        if (typeof Utils !== 'undefined' && Utils.scrollToElement) {
+            Utils.scrollToElement('contacts');
+        } else {
+            const contactsSection = document.getElementById('contacts');
+            if (contactsSection) {
+                contactsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
 
         setTimeout(() => {
             const nameField = document.getElementById('name-field');
@@ -97,3 +148,9 @@ const Forms = {
         }, 800);
     }
 };
+
+// Инициализация при загрузке документа
+document.addEventListener('DOMContentLoaded', function() {
+    Forms.init();
+    console.log('🚀 Forms module initialized');
+});
