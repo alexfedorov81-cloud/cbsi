@@ -2,3 +2,5 @@
 *.db
 create_admin.py
 .idea/
+__pycache__/
+*.pyc
