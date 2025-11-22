@@ -13,81 +13,25 @@ import json
 @csrf_exempt
 @require_POST
 def callback_request(request):
-    print("🎯 ===== НАЧАЛО ОБРАБОТКИ ФОРМЫ =====")
+    print("🎯 ОБЫЧНАЯ ФОРМА ОТПРАВЛЕНА")
+    form = CallbackForm(request.POST)
 
-    try:
-        # Парсим JSON данные
-        data = json.loads(request.body)
-        print(f"📦 Получены данные: {data}")
+    if form.is_valid():
+        print("✅ ФОРМА ВАЛИДНА")
 
-        # Создаем форму с данными
-        form_data = {
-            'name': data.get('name', '').strip(),
-            'phone': data.get('phone', '').strip()
-        }
+        # Сохраняем заявку
+        callback = form.save()
 
-        form = CallbackForm(form_data)
-        print(f"✅ Форма создана, валидна: {form.is_valid()}")
+        # Отправляем в Telegram
+        from .telegram_bot1 import telegram_notifier
+        name = form.cleaned_data['name']
+        phone = form.cleaned_data['phone']
+        telegram_notifier.send_notification(name, phone)
 
-        if form.is_valid():
-            print("🎉 ФОРМА ВАЛИДНА!")
+        print("✅ Telegram отправлен!")
 
-            # Обрабатываем service_id если он передан
-            service_id = data.get('service_id')
-            service_name = None
-
-            if service_id:
-                try:
-                    service = Service.objects.get(id=service_id)
-                    callback = form.save(commit=False)
-                    callback.service = service
-                    callback.save()
-                    service_name = service.name
-                    print(f"📋 Услуга: {service_name}")
-                except Service.DoesNotExist:
-                    callback = form.save()
-                    print("⚠️ Услуга не найдена")
-            else:
-                callback = form.save()
-                print("ℹ️ Услуга не указана")
-
-            # ===== ОТПРАВКА В TELEGRAM =====
-            print("🔔 ОТПРАВЛЯЕМ В TELEGRAM...")
-            name = form.cleaned_data['name']
-            phone = form.cleaned_data['phone']
-
-            telegram_success = telegram_notifier.send_notification(name, phone)
-
-            if telegram_success:
-                print("✅ TELEGRAM ОТПРАВЛЕН УСПЕШНО!")
-            else:
-                print("❌ ОШИБКА ОТПРАВКИ TELEGRAM")
-
-            # Возвращаем успешный ответ
-            return JsonResponse({
-                'success': True,
-                'message': 'Спасибо! Мы перезвоним вам в ближайшее время.'
-            })
-
-        else:
-            print("❌ ФОРМА НЕВАЛИДНА")
-            print(f"🚨 Ошибки: {form.errors}")
-            return JsonResponse({
-                'success': False,
-                'message': 'Пожалуйста, проверьте правильность введенных данных.'
-            })
-
-    except json.JSONDecodeError:
-        print("❌ ОШИБКА JSON")
-        return JsonResponse({
-            'success': False,
-            'message': 'Ошибка данных'
-        })
-    except Exception as e:
-        print(f"❌ ОБЩАЯ ОШИБКА: {e}")
-        return JsonResponse({
-            'success': False,
-            'message': 'Произошла ошибка'
-        })
-    finally:
-        print("🎯 ===== КОНЕЦ ОБРАБОТКИ ФОРМЫ =====")
+        messages.success(request, 'Спасибо! Мы перезвоним вам в ближайшее время.')
+        return redirect(reverse('home') + '#contacts')
+    else:
+        messages.error(request, 'Пожалуйста, проверьте правильность введенных данных.')
+        return redirect(reverse('home') + '#contacts')

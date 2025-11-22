@@ -321,7 +321,7 @@
 
                                             <div id="form-messages" class="mb-4" aria-live="polite"></div>
 
-                                            <form id="callback-form" class="space-y-4" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
+                                            <form id="callback-form" class="space-y-4" action="/contacts/callback/" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
                                                 {% csrf_token %}
                                                 <div>
                                                     <label for="name-field" class="sr-only">Ваше имя</label>

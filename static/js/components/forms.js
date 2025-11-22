@@ -1,3 +1,4 @@
+/*
 // Работа с формами
 const Forms = {
     init: () => {
@@ -154,3 +155,4 @@ document.addEventListener('DOMContentLoaded', function() {
     Forms.init();
     console.log('🚀 Forms module initialized');
 });
+*/
