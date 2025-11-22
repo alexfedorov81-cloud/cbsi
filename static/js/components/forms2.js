@@ -10,26 +10,25 @@ function scrollToSection(sectionId) {
 function focusOnCallbackForm(serviceId = null) {
     console.log('🎯 Focusing on form, serviceId:', serviceId);
 
-    // Scroll to contacts form
+    // СНАЧАЛА добавляем service_id в форму (БЕЗ задержки)
+    if (serviceId) {
+        let serviceField = document.getElementById('service-field');
+        if (!serviceField) {
+            serviceField = document.createElement('input');
+            serviceField.type = 'hidden';
+            serviceField.name = 'service_id';
+            serviceField.id = 'service-field';
+            const form = document.getElementById('callback-form');
+            if (form) form.appendChild(serviceField);
+        }
+        serviceField.value = serviceId;
+        console.log('✅ Service ID added:', serviceId);
+    }
+
+    // ПОТОМ скроллим к форме
     const contactsSection = document.getElementById('contacts');
     if (contactsSection) {
         contactsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Add service_id if needed
-    if (serviceId) {
-        setTimeout(() => {
-            let serviceField = document.getElementById('service-field');
-            if (!serviceField) {
-                serviceField = document.createElement('input');
-                serviceField.type = 'hidden';
-                serviceField.name = 'service_id';
-                serviceField.id = 'service-field';
-                const form = document.getElementById('callback-form');
-                if (form) form.appendChild(serviceField);
-            }
-            serviceField.value = serviceId;
-        }, 500);
     }
 
     // Highlight and focus name field

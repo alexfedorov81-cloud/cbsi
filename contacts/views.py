@@ -19,14 +19,32 @@ def callback_request(request):
     if form.is_valid():
         print("✅ ФОРМА ВАЛИДНА")
 
-        # Сохраняем заявку
-        callback = form.save()
+        # Обрабатываем service_id из скрытого поля
+        service_id = request.POST.get('service_id')
+        service_name = None
 
-        # Отправляем в Telegram
+        if service_id:
+            try:
+                service = Service.objects.get(id=service_id)
+                callback = form.save(commit=False)
+                callback.service = service
+                callback.save()
+                service_name = service.name
+                print(f"📋 Услуга: {service_name}")
+            except Service.DoesNotExist:
+                callback = form.save()
+                print("⚠️ Услуга не найдена")
+        else:
+            callback = form.save()
+            print("ℹ️ Услуга не указана")
+
+        # Отправляем в Telegram с информацией об услуге
         from .telegram_bot1 import telegram_notifier
         name = form.cleaned_data['name']
         phone = form.cleaned_data['phone']
-        telegram_notifier.send_notification(name, phone)
+
+        service_info = f"📋 Услуга: {service_name}" if service_name else ""
+        telegram_notifier.send_notification(name, phone, service_info)
 
         print("✅ Telegram отправлен!")
 
