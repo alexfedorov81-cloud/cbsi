@@ -78,7 +78,7 @@
                                  itemprop="image"
                                  onerror="this.style.display='none'">
 
-                            <!-- Аннотация при наведении -->
+
                             <div class="equipment-annotation">
                                 <div class="annotation-title" itemprop="name">Система «Диана»</div>
                                 <div class="annotation-text" itemprop="description">
@@ -109,29 +109,12 @@
                     </div>
                 </div>
 
-                <!-- Дополнительная информация
-                <div class="grid md:grid-cols-3 gap-8 mt-16 pt-8 border-t border-gray-700">
-                    <div class="text-center fade-in" itemscope itemtype="https://schema.org/Service">
-                        <div class="text-3xl text-accent mb-4" aria-hidden="true"><i class="fas fa-graduation-cap"></i></div>
-                        <h4 class="text-lg font-bold text-light mb-2" itemprop="name">Квалификация</h4>
-                        <p class="text-light-secondary" itemprop="description">Сертифицированные специалисты с многолетним опытом</p>
-                    </div>
-                    <div class="text-center fade-in" itemscope itemtype="https://schema.org/Service">
-                        <div class="text-3xl text-accent mb-4" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
-                        <h4 class="text-lg font-bold text-light mb-2" itemprop="name">Конфиденциальность</h4>
-                        <p class="text-light-secondary" itemprop="description">Полная анонимность и защита персональных данных</p>
-                    </div>
-                    <div class="text-center fade-in" itemscope itemtype="https://schema.org/Service">
-                        <div class="text-3xl text-accent mb-4" aria-hidden="true"><i class="fas fa-file-certificate"></i></div>
-                        <h4 class="text-lg font-bold text-light mb-2" itemprop="name">Документы</h4>
-                        <p class="text-light-secondary" itemprop="description">Официальные заключения с юридической силой</p>
-                    </div>
-                </div>-->
+
             </div>
         </div>
     </section>
 
-    <!-- Услуги -->
+
     <!-- Услуги -->
     <section id="services" class="py-20" aria-labelledby="services-heading">
         <div class="container mx-auto px-6">
@@ -142,7 +125,7 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {% for service in services %}
                     <div class="service-card-enhanced rounded-xl p-6 fade-in" itemscope itemtype="https://schema.org/Service">
-                        <!-- Динамическая иконка на основе выбора в админке -->
+
                         <div class="text-accent text-3xl mb-4" aria-hidden="true">
                             {% if service.image == 'briefcase' %}
                                 <i class="fas fa-briefcase"></i>
@@ -163,7 +146,7 @@
                             {% elif service.image == 'lock' %}
                                 <i class="fas fa-lock"></i>
                             {% else %}
-                                <i class="fas fa-user-shield"></i> <!-- По умолчанию -->
+                                <i class="fas fa-user-shield"></i>
                             {% endif %}
                         </div>
 
@@ -296,7 +279,7 @@
                 <h2 id="contacts-heading" class="text-4xl font-bold text-light mb-4 text-center">Контакты</h2>
                 <p class="text-xl text-light-secondary text-center mb-12">Свяжитесь с нами для консультации</p>
 
-                <!-- Сообщения Django -->
+
                 {% if messages %}
                 <div class="max-w-2xl mx-auto mb-8">
                     {% for message in messages %}
@@ -336,7 +319,7 @@
                     <div class="fade-in">
                         <h3 class="text-2xl font-bold text-light mb-6">Заказать обратный звонок</h3>
 
-                        <!-- Контейнер для сообщений AJAX -->
+
                         <div id="form-messages" class="mb-4" aria-live="polite"></div>
 
                         <form id="callback-form" class="space-y-4" action="{% url 'callback' %}" method="POST" itemprop="potentialAction" itemscope itemtype="https://schema.org/CommunicateAction">
