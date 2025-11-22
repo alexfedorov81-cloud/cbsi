@@ -44,7 +44,7 @@ const Forms = {
             console.log('📦 Данные формы:', data);
 
             // Используем JSON вместо FormData
-            const response = await fetch('/callback/', {
+            const response = await fetch('/contacts/callback/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
