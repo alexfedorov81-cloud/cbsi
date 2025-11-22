@@ -1,10 +1,10 @@
 {% load static %}
-<!-- Основные мета-теги -->
+
 <meta name="description" content="{% block meta_description %}Профессиональные полиграфологические исследования в Сибирском регионе. Современное оборудование, конфиденциальность, официальные заключения.{% endblock %}">
 <meta name="keywords" content="{% block meta_keywords %}полиграф, детектор лжи, проверка на полиграфе, полиграфолог, Сибирский центр, ЦВСИ{% endblock %}">
 <meta name="author" content="ЦВСИ - Сибирский центр выявления скрываемой информации">
 
-<!-- Open Graph -->
+
 <meta property="og:title" content="{% block og_title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}">
 <meta property="og:description" content="{% block og_description %}Профессиональные полиграфологические исследования. Современное оборудование, конфиденциальность, официальные заключения.{% endblock %}">
 <meta property="og:type" content="website">
@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="ЦВСИ - Сибирский центр выявления скрываемой информации">
 <meta property="og:locale" content="ru_RU">
 
-<!-- Twitter Card -->
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{% block twitter_title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}">
 <meta name="twitter:description" content="{% block twitter_description %}Профессиональные полиграфологические исследования. Современное оборудование, конфиденциальность.{% endblock %}">
 <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-<!-- Дополнительные SEO теги -->
+
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
-<!-- Structured Data -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
