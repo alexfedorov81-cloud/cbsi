@@ -3,116 +3,91 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from .forms import CallbackForm
-from services.models import Service  # Добавляем импорт
+from services.models import Service
+from .telegram_bot1 import telegram_notifier
+import json
 
-# Импортируем наш Telegram бот
-from .telegram_bot1 import telegram_notifier  # ← ДОБАВИТЬ ЭТУ СТРОЧКУ
 
-
+@csrf_exempt
 @require_POST
 def callback_request(request):
-    print("🎯 ===== НАЧАЛО ОБРАБОТКИ ФОРМЫ ОБРАТНОГО ЗВОНКА =====")
-    print(f"📋 Метод: {request.method}")
-    print(f"📦 Данные POST: {request.POST}")
-    print(f"🎯 AJAX запрос: {request.headers.get('X-Requested-With') == 'XMLHttpRequest'}")
+    print("🎯 ===== НАЧАЛО ОБРАБОТКИ ФОРМЫ =====")
 
-    # Для JSON данных
-    if request.content_type == 'application/json':
-        try:
-            import json
-            data = json.loads(request.body)
-            print(f"📨 JSON данные: {data}")
-        except Exception as e:
-            print(f"❌ Ошибка парсинга JSON: {e}")
-            data = {}
-    else:
-        data = request.POST.dict()
-        print(f"📨 Form данные: {data}")
+    try:
+        # Парсим JSON данные
+        data = json.loads(request.body)
+        print(f"📦 Получены данные: {data}")
 
-    form = CallbackForm(data)
-    print(f"✅ Форма создана: {form}")
+        # Создаем форму с данными
+        form_data = {
+            'name': data.get('name', '').strip(),
+            'phone': data.get('phone', '').strip()
+        }
 
-    if form.is_valid():
-        print("🎉 ФОРМА ВАЛИДНА!")
-        print(f"📝 Очищенные данные: {form.cleaned_data}")
+        form = CallbackForm(form_data)
+        print(f"✅ Форма создана, валидна: {form.is_valid()}")
 
-        # Обрабатываем service_id если он передан
-        service_id = data.get('service_id')
-        service_name = None
+        if form.is_valid():
+            print("🎉 ФОРМА ВАЛИДНА!")
 
-        if service_id:
-            try:
-                service = Service.objects.get(id=service_id)
-                callback = form.save(commit=False)
-                callback.service = service
-                callback.save()
-                service_name = service.name
-                print(f"📋 Услуга найдена: {service_name}")
-            except Service.DoesNotExist:
-                callback = form.save()
-                print("⚠️ Услуга не найдена")
-        else:
-            callback = form.save()
-            print("ℹ️ Услуга не указана")
+            # Обрабатываем service_id если он передан
+            service_id = data.get('service_id')
+            service_name = None
 
-        # ===== TELEGRAM УВЕДОМЛЕНИЕ =====
-        print("🔔 НАЧИНАЕМ ОТПРАВКУ В TELEGRAM")
-        try:
-            name = form.cleaned_data.get('name', '')
-            phone = form.cleaned_data.get('phone', '')
-
-            print(f"📞 Данные для Telegram - Имя: '{name}', Телефон: '{phone}'")
-
-            service_info = f"📋 Услуга: {service_name}" if service_name else ""
-
-            # Импортируем и отправляем
-            from contacts.telegram_bot1 import telegram_notifier
-            print("✅ Telegram notifier импортирован")
-
-            success = telegram_notifier.send_notification(name, phone, service_info)
-
-            if success:
-                print("🎉 TELEGRAM УВЕДОМЛЕНИЕ УСПЕШНО ОТПРАВЛЕНО!")
+            if service_id:
+                try:
+                    service = Service.objects.get(id=service_id)
+                    callback = form.save(commit=False)
+                    callback.service = service
+                    callback.save()
+                    service_name = service.name
+                    print(f"📋 Услуга: {service_name}")
+                except Service.DoesNotExist:
+                    callback = form.save()
+                    print("⚠️ Услуга не найдена")
             else:
-                print("❌ ОШИБКА ОТПРАВКИ TELEGRAM УВЕДОМЛЕНИЯ")
+                callback = form.save()
+                print("ℹ️ Услуга не указана")
 
-        except ImportError as e:
-            print(f"🚨 ОШИБКА ИМПОРТА Telegram: {e}")
-        except Exception as e:
-            print(f"🚨 ОБЩАЯ ОШИБКА Telegram: {e}")
-            import traceback
-            traceback.print_exc()
+            # ===== ОТПРАВКА В TELEGRAM =====
+            print("🔔 ОТПРАВЛЯЕМ В TELEGRAM...")
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
 
-        # Обработка ответа
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            print("📡 Возвращаем JSON ответ для AJAX")
+            telegram_success = telegram_notifier.send_notification(name, phone)
+
+            if telegram_success:
+                print("✅ TELEGRAM ОТПРАВЛЕН УСПЕШНО!")
+            else:
+                print("❌ ОШИБКА ОТПРАВКИ TELEGRAM")
+
+            # Возвращаем успешный ответ
             return JsonResponse({
                 'success': True,
                 'message': 'Спасибо! Мы перезвоним вам в ближайшее время.'
             })
+
         else:
-            print("📡 Возвращаем редирект для обычного запроса")
-            messages.success(request, 'Спасибо! Мы перезвоним вам в ближайшее время.')
-            return redirect(reverse('home') + '#contacts')
-
-    else:
-        print("❌ ФОРМА НЕВАЛИДНА")
-        print(f"🚨 Ошибки формы: {form.errors}")
-        error_message = 'Пожалуйста, проверьте правильность введенных данных.'
-        for field, errors in form.errors.items():
-            for error in errors:
-                error_message = error
-                break
-            break
-
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            print("❌ ФОРМА НЕВАЛИДНА")
+            print(f"🚨 Ошибки: {form.errors}")
             return JsonResponse({
                 'success': False,
-                'message': error_message
+                'message': 'Пожалуйста, проверьте правильность введенных данных.'
             })
-        else:
-            messages.error(request, error_message)
-            return redirect(reverse('home') + '#contacts')
 
-    print("🎯 ===== ЗАВЕРШЕНИЕ ОБРАБОТКИ ФОРМЫ =====")
+    except json.JSONDecodeError:
+        print("❌ ОШИБКА JSON")
+        return JsonResponse({
+            'success': False,
+            'message': 'Ошибка данных'
+        })
+    except Exception as e:
+        print(f"❌ ОБЩАЯ ОШИБКА: {e}")
+        return JsonResponse({
+            'success': False,
+            'message': 'Произошла ошибка'
+        })
+    finally:
+        print("🎯 ===== КОНЕЦ ОБРАБОТКИ ФОРМЫ =====")
