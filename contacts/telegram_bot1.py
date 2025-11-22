@@ -4,8 +4,8 @@ import json
 
 class TelegramNotifier:
     def __init__(self):
-        self.bot_token = "ВАШ_ТОКЕН"  # Замените на реальный токен
-        self.chat_id = "ВАШ_CHAT_ID"  # Замените на реальный chat_id
+        self.bot_token = "8510941588:AAGlVGwV9B9DzIugOmwMYVi25SGXVmWTOpg"  # Замените на реальный токен
+        self.chat_id = "743780549"  # Замените на реальный chat_id
 
     def send_notification(self, name, phone, service_info=""):
         print("=" * 50)
