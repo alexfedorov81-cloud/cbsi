@@ -3,8 +3,8 @@ import requests
 
 class TelegramNotifier:
     def __init__(self):
-        self.bot_token = "ВАШ_ТОКЕН_ОТ_BOTFATHER"
-        self.chat_id = "ВАШ_CHAT_ID"
+        self.bot_token = "8510941588:AAGlVGwV9B9DzIugOmwMYVi25SGXVmWTOpg"
+        self.chat_id = "743780549"
 
     def send_notification(self, name, phone, service_info=""):
         message = f"""🎯 *Новая заявка с сайта ЦВСИ*
