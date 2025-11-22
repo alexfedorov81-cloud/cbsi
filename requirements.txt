@@ -9,6 +9,7 @@ dj-database-url==3.0.1
 Django==5.2.8
 django-extensions==4.1
 djangorestframework==3.16.1
+requests
 executing==2.2.1
 gunicorn==23.0.0
 ipython==9.7.0
@@ -30,3 +31,4 @@ traitlets==5.14.3
 tzdata==2025.2
 wcwidth==0.2.14
 whitenoise==6.11.0
+
