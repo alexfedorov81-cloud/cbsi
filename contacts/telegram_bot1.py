@@ -11,6 +11,10 @@ class TelegramNotifier:
     def send_notification(self, name, phone, service_info=""):
         try:
             message = f"🎯 НОВАЯ ЗАЯВКА\n👤 Имя: {name}\n📞 Телефон: {phone}"
+            if service_info:
+                message += f"\n{service_info}"
+
+            print(f"📨 Telegram сообщение: {message}")  # ← для отладки
 
             url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
             data = {
