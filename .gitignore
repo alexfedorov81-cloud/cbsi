@@ -1,3 +1,4 @@
-"*.sqlite3" 
-"*.db"
-"create_admin.py"
+*.sqlite3
+*.db
+create_admin.py
+.idea/
