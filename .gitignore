@@ -4,3 +4,4 @@ create_admin.py
 .idea/
 __pycache__/
 *.pyc
+get_chat_id.py
