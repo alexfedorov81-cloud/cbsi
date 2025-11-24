@@ -28,3 +28,6 @@ cbsi_site/settings.py.backup
 /etc/nginx/
 /etc/systemd/system/
 /etc/systemd/system/gunicorn.service
+
+#Другие секреты
+contacts/telegram_bot1.py
