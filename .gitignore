@@ -5,3 +5,17 @@ create_admin.py
 __pycache__/
 *.pyc
 get_chat_id.py
+# Конфиденциальные данные
+*.key
+*.pem
+db.sqlite3
+.env
+secrets.py
+
+# SSL сертификаты
+/etc/letsencrypt/
+
+# Системные конфиги
+/etc/nginx/
+/etc/systemd/system/gunicorn.service
+cbsi_site/settings.py
