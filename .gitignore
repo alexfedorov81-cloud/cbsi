@@ -1,3 +1,4 @@
+
 *.sqlite3
 *.db
 create_admin.py
@@ -15,7 +16,15 @@ secrets.py
 # SSL сертификаты
 /etc/letsencrypt/
 
-# Системные конфиги
-/etc/nginx/
-/etc/systemd/system/gunicorn.service
+# Django
 cbsi_site/settings.py
+cbsi_site/settings.py.backup
+*.local.py
+
+# Socket files
+*.sock
+
+# System configs
+/etc/nginx/
+/etc/systemd/system/
+/etc/systemd/system/gunicorn.service
