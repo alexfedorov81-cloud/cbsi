@@ -12,7 +12,7 @@
 {% block content %}
 
     <!-- Герой-секция -->
-    <section class="hero-overlay text-light min-h-screen flex items-center justify-center pt-16 md:pt-0" aria-labelledby="main-heading" itemscope itemtype="https://schema.org/ProfessionalService">
+    <section class="hero-overlay text-light hero-centered" aria-labelledby="main-heading" itemscope itemtype="https://schema.org/ProfessionalService">
         <div class="container mx-auto px-4 text-center">
             <!-- Логотип/название для мобильных -->
             <div class="md:hidden mb-8 fade-in">
@@ -78,7 +78,7 @@
                 <!-- Блок с оборудованием -->
                 <div class="equipment-section">
                     <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
-                        <div class="equipment-image lg:flex-1 max-w-md lg:max-w-lg mx-auto">
+                        <div class="equipment-image lg:flex-1 equipment-size-fix">
                             <img src="{% static 'images/equipment.jpg' %}"
                                  alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
                                  class="equipment-img w-full rounded-lg shadow-lg"
