@@ -61,27 +61,21 @@
     <!-- О компании -->
     <section id="about" class="py-20" aria-labelledby="about-heading">
         <div class="container mx-auto px-6">
-            <div class="content-overlay-enhanced p-8 md:p-12 fade-in" itemscope itemtype="https://schema.org/AboutPage">
+            <div class="content-overlay-enhanced p-8 md:p-12 fade-in">
                 <h2 id="about-heading" class="text-4xl font-bold text-light mb-4 text-center">О центре</h2>
-                <!--<p class="text-xl text-light-secondary max-w-3xl mx-auto mb-12 text-center">
-                    Профессиональные полиграфологические исследования в Сибирском регионе.
-                    Современное оборудование и квалифицированные специалисты.
-                </p>-->
 
                 <!-- Блок с оборудованием -->
-                <div class="equipment-section" itemscope itemtype="https://schema.org/Product">
+                <div class="equipment-section">
                     <div class="equipment-container">
                         <div class="equipment-image">
                             <img src="{% static 'images/equipment.jpg' %}"
                                  alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
                                  class="equipment-img"
-                                 itemprop="image"
                                  onerror="this.style.display='none'">
 
-
                             <div class="equipment-annotation">
-                                <div class="annotation-title" itemprop="name">Система «Диана»</div>
-                                <div class="annotation-text" itemprop="description">
+                                <div class="annotation-title">Система «Диана»</div>
+                                <div class="annotation-text">
                                     «Диана» — это название серии профессиональных компьютерных полиграфов, выпускаемых компанией
                                     Поликониус. Системы регистрируют физиологические показатели человека (дыхание, пульс,
                                     кожное сопротивление, двигательная активность) во время психофизиологических тестирований
@@ -93,23 +87,19 @@
                         </div>
 
                         <div class="equipment-info">
-                            <h3 class="equipment-title  text-2xl">Современное оборудование</h3>
-
-                            <p class="equipment-description mt-4  text-xl">
+                            <h3 class="equipment-title text-2xl">Современное оборудование</h3>
+                            <p class="equipment-description mt-4 text-xl">
                                 Все исследования проводятся на сертифицированном оборудовании,
                                 соответствующем международным стандартам качества и безопасности.
                             </p>
-                            <h3 class="equipment-title text-2xl mt-8">Квалифицированные специалисты</h3>  <!-- ← Новый заголовок -->
+                            <h3 class="equipment-title text-2xl mt-8">Квалифицированные специалисты</h3>
                             <p class="equipment-description text-lg">
                                 Наши специалисты - сертифицированные полиграфологи с многолетним опытом,
                                 прошедшие профессиональную подготовку и регулярно повышающие квалификацию.
                             </p>
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
