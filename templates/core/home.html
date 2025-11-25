@@ -12,10 +12,10 @@
 {% block content %}
 
     <!-- Герой-секция -->
-    <section class="hero-overlay text-light min-h-screen flex items-center justify-center pt-20 md:pt-0" aria-labelledby="main-heading" itemscope itemtype="https://schema.org/ProfessionalService">
+    <section class="hero-overlay text-light min-h-screen flex items-center justify-center pt-16 md:pt-0" aria-labelledby="main-heading" itemscope itemtype="https://schema.org/ProfessionalService">
         <div class="container mx-auto px-4 text-center">
             <!-- Логотип/название для мобильных -->
-            <div class="md:hidden mb-6 fade-in">
+            <div class="md:hidden mb-8 fade-in">
                 <div class="text-xl font-bold text-accent">
                     ЦВСИ
                 </div>
@@ -77,8 +77,8 @@
 
                 <!-- Блок с оборудованием -->
                 <div class="equipment-section">
-                    <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8">
-                        <div class="equipment-image lg:flex-1">
+                    <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
+                        <div class="equipment-image lg:flex-1 max-w-md lg:max-w-lg mx-auto">
                             <img src="{% static 'images/equipment.jpg' %}"
                                  alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
                                  class="equipment-img w-full rounded-lg shadow-lg"
@@ -92,7 +92,7 @@
                             </div>
                         </div>
 
-                        <div class="equipment-info lg:flex-1">
+                        <div class="equipment-info lg:flex-1 mt-6 lg:mt-0">
                             <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Современное оборудование</h3>
                             <p class="equipment-description text-lg text-light-secondary mb-6">
                                 Все исследования проводятся на сертифицированном оборудовании, соответствующем международным стандартам качества и безопасности.
