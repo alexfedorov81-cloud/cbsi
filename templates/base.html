@@ -24,6 +24,19 @@
     <meta name="theme-color" content="#ffffff">
 
     {% include 'includes/seo.html' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Полиграф-54 | ЦВСИ - Сибирский центр выявления скрываемой информации",
+      "description": "Профессиональная проверка на полиграфе в Новосибирске и Сибирском регионе",
+      "url": "https://полиграф-54.рф",
+      "telephone": "{{ settings.phone }}",
+      "email": "{{ settings.email }}",
+      "areaServed": ["Новосибирск", "Кемерово", "Барнаул", "Томск", "Омск", "Новокузнецк", "Красноярск", "Иркутск"],
+      "serviceType": "Полиграфологические исследования"
+    }
+    </script>
 
     <title>{% block title %}ЦВСИ - Сибирский центр выявления скрываемой информации{% endblock %}</title>
 

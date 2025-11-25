@@ -125,7 +125,7 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {% for service in services %}
                     <div class="service-card-enhanced rounded-xl p-6 fade-in" itemscope itemtype="https://schema.org/Service">
-
+                        <!-- Иконка услуги -->
                         <div class="text-accent text-3xl mb-4" aria-hidden="true">
                             {% if service.image == 'briefcase' %}
                                 <i class="fas fa-briefcase"></i>
@@ -152,10 +152,18 @@
 
                         <h3 class="text-xl font-bold text-light mb-3" itemprop="name">{{ service.title }}</h3>
                         <p class="text-light-secondary mb-4" itemprop="description">{{ service.description }}</p>
+
                         <div class="flex justify-between items-center mt-4">
-                            <span class="text-2xl font-bold text-accent" itemprop="price">{{ service.price }} ₽</span>
-                            <span class="text-light-secondary" itemprop="duration">{{ service.duration }}</span>
+                            <!-- ОБЯЗАТЕЛЬНОЕ ПОЛЕ: offers -->
+                            <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="display: none;">
+                                <meta itemprop="price" content="{{ service.price }}">
+                                <meta itemprop="priceCurrency" content="RUB">
+                            </div>
+
+                            <span class="text-2xl font-bold text-accent">{{ service.price }} ₽</span>
+                            <span class="text-light-secondary">{{ service.duration }}</span>
                         </div>
+
                         <button onclick="focusOnCallbackForm({{ service.id }})"
                                 class="w-full mt-4 btn btn-primary py-3"
                                 aria-label="Записаться на услугу {{ service.title }}">
@@ -242,9 +250,15 @@
                 <h2 id="reviews-heading" class="text-4xl font-bold text-light mb-4 text-center">Отзывы клиентов</h2>
                 <p class="text-xl text-light-secondary text-center mb-12">Что говорят наши клиенты</p>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" itemscope itemtype="https://schema.org/Review">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {% for review in reviews %}
-                    <div class="service-card-enhanced rounded-lg p-6 fade-in" itemprop="review" itemscope itemtype="https://schema.org/Review">
+                    <div class="service-card-enhanced rounded-lg p-6 fade-in" itemscope itemtype="https://schema.org/Review">
+                        <!-- ОБЯЗАТЕЛЬНОЕ ПОЛЕ: itemReviewed -->
+                        <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization" style="display: none;">
+                            <meta itemprop="name" content="Полиграф-54 | ЦВСИ">
+                            <meta itemprop="url" content="https://полиграф-54.рф/">
+                        </div>
+
                         <div class="flex items-center mb-4">
                             <div class="text-yellow-400 text-lg" aria-label="Рейтинг: {{ review.rating }} из 5 звезд">
                                 {% for i in "12345" %}
@@ -256,11 +270,19 @@
                                 {% endfor %}
                             </div>
                         </div>
+
+                        <!-- Текст отзыва -->
                         <p class="text-light-secondary mb-4 italic" itemprop="reviewBody">"{{ review.text }}"</p>
+
+                        <!-- ОБЯЗАТЕЛЬНОЕ ПОЛЕ: author -->
                         <p class="text-light font-semibold" itemprop="author" itemscope itemtype="https://schema.org/Person">
                             <span itemprop="name">{{ review.author_name }}</span>
                         </p>
+
+                        <!-- Дата -->
                         <meta itemprop="datePublished" content="{{ review.created_at|date:'Y-m-d' }}">
+
+                        <!-- Рейтинг -->
                         <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating" style="display: none;">
                             <meta itemprop="ratingValue" content="{{ review.rating }}">
                             <meta itemprop="bestRating" content="5">
