@@ -137,6 +137,10 @@
                                 <i class="fas fa-id-card"></i>
                             {% elif service.image == 'lock' %}
                                 <i class="fas fa-lock"></i>
+                            {% elif service.image == 'car' %}
+                                <i class="fas fa-car"></i>
+                            {% elif service.image == 'map-marker-alt' %}
+                                <i class="fas fa-map-marker-alt"></i>
                             {% else %}
                                 <i class="fas fa-user-shield"></i>
                             {% endif %}
@@ -145,18 +149,27 @@
                         <h3 class="text-xl font-bold text-light mb-3" itemprop="name">{{ service.title }}</h3>
                         <p class="text-light-secondary mb-4" itemprop="description">{{ service.description }}</p>
 
-                        <div class="flex justify-between items-center mt-4">
+                        <!-- Цена с отступом снизу -->
+                        <div class="mb-2">
                             <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="display: none;">
                                 <meta itemprop="price" content="{{ service.price }}">
                                 <meta itemprop="priceCurrency" content="RUB">
                             </div>
 
-                            <span class="text-2xl font-bold text-accent">{{ service.price }} ₽</span>
-                            <span class="text-light-secondary">{{ service.duration }}</span>
+                            {% if "выезд" in service.title|lower or "командир" in service.title|lower or service.price == 0 or service.price == None %}
+                                <span class="text-2xl font-bold text-accent">договорная</span>
+                            {% else %}
+                                <span class="text-2xl font-bold text-accent">от {{ service.price }} ₽</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Продолжительность с отступом сверху -->
+                        <div class="mt-2 mb-4">
+                            <span class="text-light-secondary text-sm">{{ service.duration }}</span>
                         </div>
 
                         <button onclick="focusOnCallbackForm({{ service.id }})"
-                                class="w-full mt-4 btn btn-primary py-3"
+                                class="w-full btn btn-primary py-3"
                                 aria-label="Записаться на услугу {{ service.title }}">
                             Записаться
                         </button>
