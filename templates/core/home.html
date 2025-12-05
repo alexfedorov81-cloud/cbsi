@@ -73,84 +73,105 @@
     <section id="about" class="py-12 md:py-20" aria-labelledby="about-heading">
         <div class="container mx-auto px-4">
             <div class="content-overlay-enhanced p-6 sm:p-8 md:p-12 fade-in">
-                <h2 id="about-heading" class="text-3xl sm:text-4xl font-bold text-light mb-6 text-center">О центре</h2>
+                <h2 id="about-heading" class="text-3xl sm:text-4xl font-bold text-light mb-12 text-center">О центре</h2>
 
                 <!-- Блок с оборудованием и офисом -->
                 <div class="space-y-12">
-                    <!-- Оборудование -->
-                    <div class="equipment-section">
-                        <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
-                            <div class="equipment-image lg:flex-1 equipment-size-fix">
+                    <!-- 1. Современное оборудование -->
+                    <div class="bg-dark-secondary rounded-xl p-6 shadow-lg fade-in">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-light mb-4 text-center">Современное оборудование</h3>
+                        <div class="flex flex-col lg:flex-row gap-6 md:gap-8 items-center">
+                            <div class="lg:w-1/2 equipment-size-fix">
                                 <img src="{% static 'images/equipment.jpg' %}"
                                      alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
-                                     class="equipment-img w-full rounded-lg shadow-lg"
+                                     class="w-full rounded-lg shadow-lg"
                                      onerror="this.style.display='none'">
-
-                                <div class="equipment-annotation mt-4 p-4 bg-dark-secondary rounded-lg">
+                                <div class="equipment-annotation mt-4 p-4 bg-dark rounded-lg">
                                     <div class="annotation-title font-bold text-accent mb-2 text-lg">Система «Диана»</div>
                                     <div class="annotation-text text-sm text-light-secondary">
                                         Профессиональный компьютерный полиграф для точных психофизиологических тестирований с использованием современного ПО и запатентованных алгоритмов.
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="equipment-info lg:flex-1 mt-6 lg:mt-0">
-                                <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Современное оборудование</h3>
-                                <p class="equipment-description text-lg text-light-secondary mb-6">
+                            <div class="lg:w-1/2">
+                                <p class="text-lg text-light-secondary">
                                     Все исследования проводятся на сертифицированном оборудовании, соответствующем международным стандартам качества и безопасности.
+                                    Мы используем только профессиональное оборудование последнего поколения, что гарантирует точность и достоверность результатов.
                                 </p>
-                                <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Квалифицированные специалисты</h3>
-                                <p class="equipment-description text-lg text-light-secondary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Квалифицированные специалисты -->
+                    <div class="bg-dark-secondary rounded-xl p-6 shadow-lg fade-in">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-light mb-4 text-center">Квалифицированные специалисты</h3>
+                        <div class="flex flex-col lg:flex-row gap-6 md:gap-8 items-center">
+                            <div class="lg:w-1/2">
+                                <p class="text-lg text-light-secondary">
                                     Наши специалисты - сертифицированные полиграфологи с многолетним опытом, прошедшие профессиональную подготовку и регулярно повышающие квалификацию.
                                 </p>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Офис и расположение -->
-                    <div class="grid md:grid-cols-2 gap-8 mt-8">
-                        <!-- Фото кабинета -->
-                        <div class="fade-in">
-                            <h4 class="text-xl font-bold text-light mb-4 text-center">Комфортный кабинет</h4>
-                            <div class="rounded-lg overflow-hidden shadow-lg">
-                                <img src="{% static 'images/office.jpg' %}"
-                                     alt="Кабинет для проведения полиграфологических исследований - комфортные условия для тестирования"
-                                     class="w-full h-auto object-cover"
-                                     onerror="this.onerror=null; this.style.display='none';">
-                            </div>
-                            <div class="mt-4 text-center">
-                                <p class="text-light-secondary">Уютное помещение для проведения конфиденциальных бесед и тестирований</p>
-                            </div>
-                        </div>
-
-                        <!-- Карта -->
-                        <div class="fade-in">
-                            <h4 class="text-xl font-bold text-light mb-4 text-center">Удобное расположение</h4>
-                            <a href="https://go.2gis.com/rXc24" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg hover:opacity-90 transition-opacity">
-                                <img src="{% static 'images/map.jpg' %}"
-                                     alt="Карта расположения офиса ЦВСИ - Сибирского центра выявления скрываемой информации. Кликните для просмотра в 2ГИС"
-                                     class="w-full h-auto object-cover"
-                                     onerror="this.onerror=null; this.style.display='none';">
-                            </a>
-                            <div class="mt-4 text-center">
+                            <div class="lg:w-1/2 text-center">
+                                <div class="text-accent text-5xl mb-4">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
                                 <p class="text-light-secondary">
-                                    Наш офис находится в центре города, к нам легко добраться.
-                                    <span class="block mt-1 text-accent font-semibold">
-                                        Кликните на карту для просмотра в 2ГИС →
-                                    </span>
+                                    Дипломы и сертификаты<br>
+                                    Ежегодное повышение квалификации<br>
+                                    Практический опыт от 5 лет
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Описание офиса -->
-                    <div class="mt-8 text-center fade-in">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-light mb-4">Профессиональная обстановка</h3>
-                        <p class="text-lg text-light-secondary max-w-3xl mx-auto">
-                            Наш центр оборудован всем необходимым для проведения качественных полиграфологических исследований.
-                            Уютный кабинет обеспечивает комфортную и конфиденциальную атмосферу для клиентов,
-                            а удобное расположение делает визит максимально комфортным.
-                        </p>
+                    <!-- 3. Офис и расположение -->
+                    <div class="bg-dark-secondary rounded-xl p-6 shadow-lg fade-in">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-light mb-6 text-center">Профессиональная обстановка</h3>
+
+                        <!-- Фото кабинета и карта -->
+                        <div class="grid md:grid-cols-2 gap-8 mb-6">
+                            <!-- Фото кабинета -->
+                            <div class="fade-in">
+                                <h4 class="text-xl font-bold text-light mb-4 text-center">Комфортный кабинет</h4>
+                                <div class="rounded-lg overflow-hidden shadow-lg">
+                                    <img src="{% static 'images/office.jpg' %}"
+                                         alt="Кабинет для проведения полиграфологических исследований - комфортные условия для тестирования"
+                                         class="w-full h-auto object-cover"
+                                         onerror="this.onerror=null; this.style.display='none';">
+                                </div>
+                                <div class="mt-4 text-center">
+                                    <p class="text-light-secondary">Уютное помещение для проведения конфиденциальных бесед и тестирований</p>
+                                </div>
+                            </div>
+
+                            <!-- Карта -->
+                            <div class="fade-in">
+                                <h4 class="text-xl font-bold text-light mb-4 text-center">Удобное расположение</h4>
+                                <a href="https://go.2gis.com/rXc24" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg hover:opacity-90 transition-opacity">
+                                    <img src="{% static 'images/map.jpg' %}"
+                                         alt="Карта расположения офиса ЦВСИ - Сибирского центра выявления скрываемой информации. Кликните для просмотра в 2ГИС"
+                                         class="w-full h-auto object-cover"
+                                         onerror="this.onerror=null; this.style.display='none';">
+                                </a>
+                                <div class="mt-4 text-center">
+                                    <p class="text-light-secondary">
+                                        Наш офис находится в центре города, к нам легко добраться.
+                                        <span class="block mt-1 text-accent font-semibold">
+                                            Кликните на карту для просмотра в 2ГИС →
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Описание -->
+                        <div class="text-center">
+                            <p class="text-lg text-light-secondary">
+                                Наш центр оборудован всем необходимым для проведения качественных полиграфологических исследований.
+                                Уютный кабинет обеспечивает комфортную и конфиденциальную атмосферу для клиентов,
+                                а удобное расположение в центре города делает визит максимально удобным.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
