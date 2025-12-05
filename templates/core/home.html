@@ -75,33 +75,77 @@
             <div class="content-overlay-enhanced p-6 sm:p-8 md:p-12 fade-in">
                 <h2 id="about-heading" class="text-3xl sm:text-4xl font-bold text-light mb-6 text-center">О центре</h2>
 
-                <!-- Блок с оборудованием -->
-                <div class="equipment-section">
-                    <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
-                        <div class="equipment-image lg:flex-1 equipment-size-fix">
-                            <img src="{% static 'images/equipment.jpg' %}"
-                                 alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
-                                 class="equipment-img w-full rounded-lg shadow-lg"
-                                 onerror="this.style.display='none'">
+                <!-- Блок с оборудованием и офисом -->
+                <div class="space-y-12">
+                    <!-- Оборудование -->
+                    <div class="equipment-section">
+                        <div class="equipment-container flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
+                            <div class="equipment-image lg:flex-1 equipment-size-fix">
+                                <img src="{% static 'images/equipment.jpg' %}"
+                                     alt="Профессиональный компьютерный полиграф Диана для детекции лжи"
+                                     class="equipment-img w-full rounded-lg shadow-lg"
+                                     onerror="this.style.display='none'">
 
-                            <div class="equipment-annotation mt-4 p-4 bg-dark-secondary rounded-lg">
-                                <div class="annotation-title font-bold text-accent mb-2 text-lg">Система «Диана»</div>
-                                <div class="annotation-text text-sm text-light-secondary">
-                                    Профессиональный компьютерный полиграф для точных психофизиологических тестирований с использованием современного ПО и запатентованных алгоритмов.
+                                <div class="equipment-annotation mt-4 p-4 bg-dark-secondary rounded-lg">
+                                    <div class="annotation-title font-bold text-accent mb-2 text-lg">Система «Диана»</div>
+                                    <div class="annotation-text text-sm text-light-secondary">
+                                        Профессиональный компьютерный полиграф для точных психофизиологических тестирований с использованием современного ПО и запатентованных алгоритмов.
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="equipment-info lg:flex-1 mt-6 lg:mt-0">
+                                <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Современное оборудование</h3>
+                                <p class="equipment-description text-lg text-light-secondary mb-6">
+                                    Все исследования проводятся на сертифицированном оборудовании, соответствующем международным стандартам качества и безопасности.
+                                </p>
+                                <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Квалифицированные специалисты</h3>
+                                <p class="equipment-description text-lg text-light-secondary">
+                                    Наши специалисты - сертифицированные полиграфологи с многолетним опытом, прошедшие профессиональную подготовку и регулярно повышающие квалификацию.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Офис и расположение -->
+                    <div class="grid md:grid-cols-2 gap-8 mt-8">
+                        <!-- Фото кабинета -->
+                        <div class="fade-in">
+                            <div class="rounded-lg overflow-hidden shadow-lg">
+                                <img src="{% static 'images/office.jpg' %}"
+                                     alt="Кабинет для проведения полиграфологических исследований - комфортные условия для тестирования"
+                                     class="w-full h-auto object-cover"
+                                     onerror="this.style.display='none'">
+                            </div>
+                            <div class="mt-4 text-center">
+                                <h4 class="text-xl font-bold text-light mb-2">Комфортный кабинет</h4>
+                                <p class="text-light-secondary">Уютное помещение для проведения конфиденциальных бесед и тестирований</p>
                             </div>
                         </div>
 
-                        <div class="equipment-info lg:flex-1 mt-6 lg:mt-0">
-                            <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Современное оборудование</h3>
-                            <p class="equipment-description text-lg text-light-secondary mb-6">
-                                Все исследования проводятся на сертифицированном оборудовании, соответствующем международным стандартам качества и безопасности.
-                            </p>
-                            <h3 class="equipment-title text-2xl sm:text-3xl font-bold text-light mb-4">Квалифицированные специалисты</h3>
-                            <p class="equipment-description text-lg text-light-secondary">
-                                Наши специалисты - сертифицированные полиграфологи с многолетним опытом, прошедшие профессиональную подготовку и регулярно повышающие квалификацию.
-                            </p>
+                        <!-- Карта -->
+                        <div class="fade-in">
+                            <div class="rounded-lg overflow-hidden shadow-lg">
+                                <img src="{% static 'images/map.jpg' %}"
+                                     alt="Карта расположения офиса ЦВСИ - Сибирского центра выявления скрываемой информации"
+                                     class="w-full h-auto object-cover"
+                                     onerror="this.style.display='none'">
+                            </div>
+                            <div class="mt-4 text-center">
+                                <h4 class="text-xl font-bold text-light mb-2">Удобное расположение</h4>
+                                <p class="text-light-secondary">Наш офис находится в активном месте города, к нам легко добраться</p>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Описание офиса -->
+                    <div class="mt-8 text-center fade-in">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-light mb-4">Профессиональная обстановка</h3>
+                        <p class="text-lg text-light-secondary max-w-3xl mx-auto">
+                            Наш центр оборудован всем необходимым для проведения качественных полиграфологических исследований.
+                            Уютный кабинет обеспечивает комфортную и конфиденциальную атмосферу для клиентов,
+                            а удобное расположение делает визит максимально комфортным.
+                        </p>
                     </div>
                 </div>
             </div>
