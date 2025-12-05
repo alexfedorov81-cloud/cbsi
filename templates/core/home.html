@@ -111,29 +111,34 @@
                     <div class="grid md:grid-cols-2 gap-8 mt-8">
                         <!-- Фото кабинета -->
                         <div class="fade-in">
+                            <h4 class="text-xl font-bold text-light mb-4 text-center">Комфортный кабинет</h4>
                             <div class="rounded-lg overflow-hidden shadow-lg">
                                 <img src="{% static 'images/office.jpg' %}"
                                      alt="Кабинет для проведения полиграфологических исследований - комфортные условия для тестирования"
                                      class="w-full h-auto object-cover"
-                                     onerror="this.style.display='none'">
+                                     onerror="this.onerror=null; this.style.display='none';">
                             </div>
                             <div class="mt-4 text-center">
-                                <h4 class="text-xl font-bold text-light mb-2">Комфортный кабинет</h4>
                                 <p class="text-light-secondary">Уютное помещение для проведения конфиденциальных бесед и тестирований</p>
                             </div>
                         </div>
 
                         <!-- Карта -->
                         <div class="fade-in">
-                            <div class="rounded-lg overflow-hidden shadow-lg">
+                            <h4 class="text-xl font-bold text-light mb-4 text-center">Удобное расположение</h4>
+                            <a href="https://go.2gis.com/rXc24" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg hover:opacity-90 transition-opacity">
                                 <img src="{% static 'images/map.jpg' %}"
-                                     alt="Карта расположения офиса ЦВСИ - Сибирского центра выявления скрываемой информации"
+                                     alt="Карта расположения офиса ЦВСИ - Сибирского центра выявления скрываемой информации. Кликните для просмотра в 2ГИС"
                                      class="w-full h-auto object-cover"
-                                     onerror="this.style.display='none'">
-                            </div>
+                                     onerror="this.onerror=null; this.style.display='none';">
+                            </a>
                             <div class="mt-4 text-center">
-                                <h4 class="text-xl font-bold text-light mb-2">Удобное расположение</h4>
-                                <p class="text-light-secondary">Наш офис находится в активном месте города, к нам легко добраться</p>
+                                <p class="text-light-secondary">
+                                    Наш офис находится в центре города, к нам легко добраться.
+                                    <span class="block mt-1 text-accent font-semibold">
+                                        Кликните на карту для просмотра в 2ГИС →
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
