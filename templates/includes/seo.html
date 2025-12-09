@@ -1,7 +1,6 @@
 {% load static %}
 
 <meta name="description" content="{% block meta_description %}Профессиональные полиграфологические исследования в Сибирском регионе. Современное оборудование, конфиденциальность, официальные заключения.{% endblock %}">
-<meta name="keywords" content="{% block meta_keywords %}полиграф, детектор лжи, проверка на полиграфе, полиграфолог, проверка на детекторе лжи, услуги полиграфолога, профессиональный полиграф, тестирование на полиграфе, психофизиологическое исследование, служебная проверка, кадровая проверка, проверка кандидатов, скрининг персонала, расследование краж, служебное расследование, семейные проверки, супружеские проверки, выезд полиграфолога, проверка сотрудников, отбор персонала, внутреннее расследование, профилактика хищений, безопасность бизнеса, полиграф для бизнеса, полиграф для частных лиц, ЦВСИ, Сибирский центр выявления скрываемой информации{% endblock %}">
 <meta name="author" content="ЦВСИ - Сибирский центр выявления скрываемой информации">
 
 
@@ -24,7 +23,7 @@
 
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
-<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<link rel="canonical" href="https://полиграф-54.рф{{ request.path }}">
 
 
 <script type="application/ld+json">
@@ -33,7 +32,7 @@
   "@type": "ProfessionalService",
   "name": "ЦВСИ - Сибирский центр выявления скрываемой информации",
   "description": "Профессиональные полиграфологические исследования в Сибирском регионе",
-  "url": "{{ request.build_absolute_uri|default:'http://localhost:8000' }}",
+  "url": "https://полиграф-54.рф",
   "telephone": "{% if settings %}{{ settings.phone }}{% else %}+7 (999) 123-45-67{% endif %}",
   "email": "{% if settings %}{{ settings.email }}{% else %}info@cbsi.ru{% endif %}",
   "address": {
@@ -66,7 +65,7 @@
     "latitude": "55.0084",
     "longitude": "82.9357"
   },
-  "url": "{{ request.build_absolute_uri|default:'http://localhost:8000' }}",
+  "url": "https://полиграф-54.рф",
   "telephone": "{% if settings %}{{ settings.phone }}{% else %}+7 (999) 123-45-67{% endif %}",
   "openingHours": "Mo-Fr 09:00-18:00",
   "priceRange": "от 5000 руб.",
@@ -81,3 +80,4 @@
   }
 }
 </script>
+<meta name="msvalidate.01" content="1D95A76B7BA485C83A5E9FCEE0326648" />
